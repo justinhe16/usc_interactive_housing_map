@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- animsition.css -->
+    <link rel="stylesheet" href="./animsition.min.css">
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <!-- animsition.js -->
+    <script src="./animsition.min.js"></script>
+    <style>
+    @font-face {
+    font-family: Fivo;
+    src: url(./FivoSans-Medium.otf);
+    }
+    .tint {
+        cursor: pointer;
+        float: right;
+        margin: 0 0 0 0;
+      }
+    .tint:before {
+        content: "";
+        display:flex;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(79,0,0, 0.5);
+        transition: all .3s linear;
+        z-index: 50;
+      }
+      #video {
+         float: right;
+         -webkit-filter: contrast(130%); /* Safari */
+         filter: contrast(130%);
+       }
+      html, body {
+         height: 100%;
+         margin: 0;
+         padding: 0;
+         background: #212121;
+         color: white;
+         font-family: Fivo, Arial;
+         overflow: hidden;
+       }
+       #content {
+         position: absolute;
+         float: left;
+         width: 40%;
+         height: 100%;
+         background: linear-gradient(to right, rgba(0,0,0,1), rgba(0,0,0,0));
+         z-index: 75;
+       }
+       h1 {
+         text-align: center;
+         margin-top: 0.5em;
+         font-size: 3em;
+         color: #ffcc00;
+       }
+       h3 {
+         margin-left: 2vw;
+         font-size: 2vw;
+       }
+       p {
+         margin-left: 2vw;
+         font-size: 1.3vw;
+       }
+       #goback:hover {
+         color: #ffcc00;
+       }
+
+    </style>
+    <script>
+    var getUrlParameter = function getUrlParameter(sParam) {
+        var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+            sURLVariables = sPageURL.split('&'),
+            sParameterName,
+            i;
+
+        for (i = 0; i < sURLVariables.length; i++) {
+            sParameterName = sURLVariables[i].split('=');
+
+            if (sParameterName[0] === sParam) {
+                return sParameterName[1] === undefined ? true : sParameterName[1];
+            }
+        }
+    };
+    </script>
+  </head>
+  <body>
+    <script>
+        $(document).ready(function() {
+          $('body').css('display', 'none');
+          $('body').fadeIn(2000);
+          var housing = getUrlParameter('name');
+          if (housing == "lorenzo") {
+            $("#video").html('<source src="./videos/lorenzo.mp4"type="video/mp4"></source>' );
+            $("#living_title").html('The Lorenzo');
+            $("#living_pricing").html('6-Bedroom Apartments: Ranging from $850/per bed to $975/per bed </br> 4-Bedroom Apartments: $1050/per bed </br> 2-Bedroom Apartments: $1450/per bed </br>');
+            $("#living_extra").html('Includes: Flat screen TV, free wifi and cable, and utilities. Parking is additional.');
+          }
+          else if (housing == "tuscany") {
+            $("#video").html('<source src="./videos/tuscany.mp4"type="video/mp4"></source>' );
+            $("#living_title").html('Tuscany Apartments');
+            $("#living_pricing").html('1x1: $3040 per bedroom </br> 2x2: $2090 per bedroom  </br> 3x3: $1920-$1940 per bedroom  </br> 4x4: Unconfirmed');
+            $("#living_extra").html('Next year all units will be renovated, so prices are up to change.');
+          }
+          else if (housing == "west27") {
+            $("#video").html('<source src="./videos/west27.mp4"type="video/mp4"></source>' );
+            $("#living_title").html('West 27th Place');
+            $("#living_pricing").html('Options include Studio, 1, 2 & 4 Bedroom Units </br> Starting at $969 per installment/per person -- 4 bedroom/2 bath </br> Prices can reach up to $1,539.00 per installment/per person for a 1 bedroom/1 bath apartment </br>');
+            $("#living_extra").html('Fully furnished apartments, high speed internet, cable, water, sewer & trash included. Facilities include 24-hour gym, recreation room, study rooms and swimming pool. ');
+          }
+          else if (housing == "victory") {
+            $("#video").html('<source src="./videos/victory.mp4"type="video/mp4"></source>' );
+            $("#living_title").html('Victory On 30th');
+            $("#living_pricing").html('Students can lease by the bed with rents starting at $1300.00/bed/month (shared bedroom, shared kitchen, shared living room). </br> Can also lease private bedrooms (shared kitchen and living room) within the two-bedroom with rents starting at $2600.00/month. </br> Can rent out a full unit with rentals starting at $5200. </br>');
+            $("#living_extra").html('All leases are 12 months. There are special prices for balcony units.');
+          }
+          else if (housing == "element") {
+            $("#video").html('<source src="./videos/element.mp4"type="video/mp4"></source>' );
+            $("#living_title").html('Element');
+            $("#living_pricing").html('3B/3B Townhome (2 stories): Shared bedspace starting from $895 per person and Private room starting from $1795 per person. </br> Penthouse (1 story): Shared bedspace starting from $1235 per person and Private room starting from $2470 per person.');
+            $("#living_extra").html('Penthouse includes remote control climate control, high ceilings, usb electrical plugins, laundry in unit, bluetooth showerheads (can play music), and TV. Facilities for the entire complex include Pool, gym, gated parking, BBQ station, lounge, high speed internet, satellite TV service, and is fully furnished per apartment.');
+          }
+          else if (housing == "gateway") {
+            $("#video").html('<source src="./videos/gateway.mp4"type="video/mp4"></source>' );
+            $("#living_title").html('University Gateway');
+            $("#living_pricing").html('1B/1B: Bedroom is shared by 2 people, starting at $1707 per person. </br> 2B/2B: Bedrooms are shared by 2 people each, starting at $1005 per person.');
+            $("#living_extra").html('Fully furnished apartments and includes cable TV and internet.');
+          }
+          else if (housing == "icon") {
+            $("#video").html('<source src="./videos/icon.mp4"type="video/mp4"></source>' );
+            $("#living_title").html('ICON');
+            $("#living_pricing").html('5B/3B: Starting from $1444 per person </br> 4B/3B: Starting from $1649 per person </br> 4B/2B: Starting from $1489 per person </br> 3B/2B: Starting from $1654 per person </br> 2B/1B: Starting from $1939 per person </br>');
+            $("#living_extra").html('Fully furnished, TV, laundry in unit, internet, cable TV, trashGym, swimming pool, recreation center, study lounge -- iMac and free printing.');
+          }
+          else if (housing == "citypark") {
+            $("#video").html('<source src="./videos/citypark.mp4"type="video/mp4"></source>' );
+            $("#living_title").html('City Park Apartments');
+            $("#living_pricing").html('2B/2B: $2600 total </br> 3B/2B: $3100 total');
+            $("#living_extra").html('Water, gas, trash, and internet included. Gym, lounge, laundry on each floor. $100 per parking spot.');
+          }
+          else if (housing == "firstchoiceonexp") {
+            $("#video").html('<source src="./videos/firstchoiceonexp.mp4"type="video/mp4"></source>' );
+            $("#living_title").html('First Choice Housing on Exposition');
+            $("#living_pricing").html('1 bed/1 bath: Starting at $1400 per person (2 persons) </br> 2 bed/1 bath: Starting at $1750 per person (2 persons)');
+            $("#living_extra").html('Internet included, pets allowed, parking available.');
+          }
+          else if (housing == "shrine") {
+            $("#video").html('<source src="./videos/shrine.mp4"type="video/mp4"></source>' );
+            $("#living_title").html('Shrine Collection');
+            $("#living_pricing").html('Dual-occupancy one/two/three bedroom apartments are available. Pricing is not listed at this time.');
+            $("#living_extra").html('A collection of apartments, including Habitat Soozee, The Bungalows, Roma, Pisa, and Chez Ronnee. Fully furnished, comes with AC/heat, internet and TV included, laundry in unit. Gym, courtyard with barbeque and fire pits.');
+          }
+          else if (housing == "thirtycourt") {
+            $("#video").html('<source src="./videos/thirtycourt.mp4"type="video/mp4"></source>' );
+            $("#living_title").html('30th Street Court Apartments');
+            $("#living_pricing").html('Dual-occupancy one/two/three bedroom apartments, and studio apartments also available. </br> Studio: $1200/month.');
+            $("#living_extra").html('Water, gas, trash, internet, and parking included.');
+          }
+        $("#goback").click(function() {
+          $('body').fadeOut(1000, function() {
+            window.location = "./index.html";
+          });
+        });
+      });
+    </script>
+    <figure class="tint">
+      <video autoplay muted loop id="video">
+        <source src="./videos/citypark.mp4" type="video/mp4">
+      </video>
+    </figure>
+    <div id="content">
+      <p id="goback"> << </p>
+      <h1 id="living_title">  </h1>
+      <h3> Pricing </h3>
+      <p id="living_pricing">
+      </p> </br>
+      <h3> Additional Information </h3>
+      <p id="living_extra"> External information </p>
+    </div>
+  </body>
+</html>

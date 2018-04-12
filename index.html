@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- animsition.css -->
+    <link rel="stylesheet" href="./animsition.min.css">
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <!-- animsition.js -->
+    <script src="./animsition.min.js"></script>
+    <style>
+      @font-face {
+      font-family: Fivo;
+      src: url(./FivoSans-Medium.otf);
+      }
+       #title {
+         position: absolute;
+         font-family: Fivo, Arial;
+         font-size: 5vw;
+         z-index: 100;
+         top: 40%;
+         left: 8vw;
+       }
+       #subtitle {
+         position: absolute;
+         font-family: Fivo, Arial;
+         font-size: 1.5vw;
+         z-index: 100;
+         left: 40%;
+       }
+       #map {
+        height: 100%;
+       }
+       html, body {
+         height: 100%;
+         margin: 0;
+         padding: 0;
+         background: #212121;
+         color: #FFCC00;
+       }
+    </style>
+  </head>
+  <body>
+    <h1 id="title"> Housing Near USC: An Interactive </h1>
+    <h3 id="subtitle"> Click on any of the pins to begin </h3>
+    <div id="map"></div>
+    <script>
+      $(document).ready(function() {
+        $('body').css('display', 'none');
+        $('#title').css('display', 'block');
+        $('body').fadeIn(2000);
+        $('#subtitle').css('display', 'none');
+        setTimeout(fadeOutTitlefadeInSubtitle, 2500);
+      });
+
+      function fadeOutTitlefadeInSubtitle() {
+        $('#title').fadeOut(2000);
+        $('#subtitle').fadeIn(2000);
+      }
+
+      function initMap() {
+        var uluru = {lat: 34.0229477, lng: -118.2870575};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 15,
+          center: uluru,
+          styles: [
+            {
+              "elementType": "geometry",
+              "stylers": [
+                {
+                  "color": "#212121"
+                }
+              ]
+            },
+            {
+              "elementType": "labels.icon",
+              "stylers": [
+                {
+                  "visibility": "off"
+                }
+              ]
+            },
+            {
+              "elementType": "labels.text.fill",
+              "stylers": [
+                {
+                  "color": "#757575"
+                }
+              ]
+            },
+            {
+              "elementType": "labels.text.stroke",
+              "stylers": [
+                {
+                  "color": "#212121"
+                }
+              ]
+            },
+            {
+              "featureType": "administrative",
+              "elementType": "geometry",
+              "stylers": [
+                {
+                  "color": "#757575"
+                }
+              ]
+            },
+            {
+              "featureType": "administrative.country",
+              "elementType": "labels.text.fill",
+              "stylers": [
+                {
+                  "color": "#9e9e9e"
+                }
+              ]
+            },
+            {
+              "featureType": "administrative.land_parcel",
+              "stylers": [
+                {
+                  "visibility": "off"
+                }
+              ]
+            },
+            {
+              "featureType": "administrative.locality",
+              "elementType": "labels.text.fill",
+              "stylers": [
+                {
+                  "color": "#bdbdbd"
+                }
+              ]
+            },
+            {
+              "featureType": "poi",
+              "elementType": "labels.text.fill",
+              "stylers": [
+                {
+                  "color": "#757575"
+                }
+              ]
+            },
+            {
+              "featureType": "poi.business",
+              "stylers": [
+                {
+                  "visibility": "off"
+                }
+              ]
+            },
+            {
+              "featureType": "poi.park",
+              "elementType": "geometry",
+              "stylers": [
+                {
+                  "color": "#181818"
+                }
+              ]
+            },
+            {
+              "featureType": "poi.park",
+              "elementType": "labels.text",
+              "stylers": [
+                {
+                  "visibility": "off"
+                }
+              ]
+            },
+            {
+              "featureType": "poi.park",
+              "elementType": "labels.text.fill",
+              "stylers": [
+                {
+                  "color": "#616161"
+                }
+              ]
+            },
+            {
+              "featureType": "poi.park",
+              "elementType": "labels.text.stroke",
+              "stylers": [
+                {
+                  "color": "#1b1b1b"
+                }
+              ]
+            },
+            {
+              "featureType": "poi.school",
+              "elementType": "labels.text.fill",
+              "stylers": [
+                {
+                  "lightness": 20
+                }
+              ]
+            },
+            {
+              "featureType": "road",
+              "elementType": "geometry.fill",
+              "stylers": [
+                {
+                  "color": "#2c2c2c"
+                }
+              ]
+            },
+            {
+              "featureType": "road",
+              "elementType": "labels.text.fill",
+              "stylers": [
+                {
+                  "color": "#8a8a8a"
+                }
+              ]
+            },
+            {
+              "featureType": "road.arterial",
+              "elementType": "geometry",
+              "stylers": [
+                {
+                  "color": "#373737"
+                }
+              ]
+            },
+            {
+              "featureType": "road.highway",
+              "elementType": "geometry",
+              "stylers": [
+                {
+                  "color": "#3c3c3c"
+                }
+              ]
+            },
+            {
+              "featureType": "road.highway.controlled_access",
+              "elementType": "geometry",
+              "stylers": [
+                {
+                  "color": "#4e4e4e"
+                }
+              ]
+            },
+            {
+              "featureType": "road.local",
+              "elementType": "labels.text.fill",
+              "stylers": [
+                {
+                  "color": "#616161"
+                }
+              ]
+            },
+            {
+              "featureType": "transit",
+              "elementType": "labels.text.fill",
+              "stylers": [
+                {
+                  "color": "#757575"
+                }
+              ]
+            },
+            {
+              "featureType": "water",
+              "elementType": "geometry",
+              "stylers": [
+                {
+                  "color": "#000000"
+                }
+              ]
+            },
+            {
+              "featureType": "water",
+              "elementType": "labels.text.fill",
+              "stylers": [
+                {
+                  "color": "#3d3d3d"
+                }
+              ]
+            }
+          ]
+        });
+
+        var lorenzo = {lat: 34.0280062, lng: -118.273328};
+        var tuscany = {lat: 34.0168919, lng: -118.2825288};
+        var west27 = {lat: 34.0264375, lng: -118.2760106};
+        var victory = {lat: 34.0272773, lng: -118.2913694};
+        var element = {lat: 34.0322845, lng: -118.2845486};
+        var gateway = {lat: 34.022794, lng: -118.2803041};
+        var icon = {lat: 34.0185821, lng: -118.2817761};
+        var citypark = {lat: 34.0271628, lng: -118.2906203};
+        var firstchoiceonexp = {lat: 34.0186636, lng: -118.2960309};
+        var shrine = {lat: 34.0230972, lng: -118.2815373};
+        var thirtycourt = {lat: 34.0257073, lng: -118.2800589};
+
+        var lorenzo_marker = new google.maps.Marker({
+          position: lorenzo,
+          map: map,
+          title: 'Lorenzo',
+          icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|900'
+        });
+
+        google.maps.event.addListener(lorenzo_marker, 'click', function() {
+          $('body').fadeOut(1000, function() {
+            window.location = "./housing.html?name=lorenzo";
+          });
+        });
+
+        var tuscany_marker = new google.maps.Marker({
+          position: tuscany,
+          map: map,
+          title: 'Tuscany',
+          icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|900'
+        });
+
+        google.maps.event.addListener(tuscany_marker, 'click', function() {
+          $('body').fadeOut(1000, function() {
+            window.location = "./housing.html?name=tuscany";
+          });
+        });
+
+        var west27_marker = new google.maps.Marker({
+          position: west27,
+          map: map,
+          title: 'West 27th Place',
+          icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|900'
+        });
+
+        google.maps.event.addListener(west27_marker, 'click', function() {
+          $('body').fadeOut(1000, function() {
+            window.location = "./housing.html?name=west27";
+          });
+        });
+
+        var victory_marker = new google.maps.Marker({
+          position: victory,
+          map: map,
+          title: 'Victory on 30th',
+          icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|900'
+        });
+
+        google.maps.event.addListener(victory_marker, 'click', function() {
+          $('body').fadeOut(1000, function() {
+            window.location = "./housing.html?name=victory";
+          });
+        });
+
+        var element_marker = new google.maps.Marker({
+          position: element,
+          map: map,
+          title: 'Element',
+          icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|900'
+        });
+
+        google.maps.event.addListener(element_marker, 'click', function() {
+          $('body').fadeOut(1000, function() {
+            window.location = "./housing.html?name=element";
+          });
+        });
+
+        var gateway_marker = new google.maps.Marker({
+          position: gateway,
+          map: map,
+          title: 'Gateway Apartments',
+          icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|900'
+        });
+
+        google.maps.event.addListener(gateway_marker, 'click', function() {
+          $('body').fadeOut(1000, function() {
+            window.location = "./housing.html?name=gateway";
+          });
+        });
+
+        var icon_marker = new google.maps.Marker({
+          position: icon,
+          map: map,
+          title: 'ICON',
+          icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|900'
+        });
+
+        google.maps.event.addListener(icon_marker, 'click', function() {
+          $('body').fadeOut(1000, function() {
+            window.location = "./housing.html?name=icon";
+          });
+        });
+
+        var citypark_marker = new google.maps.Marker({
+          position: citypark,
+          map: map,
+          title: 'City Park Apartments',
+          icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|900'
+        });
+
+        google.maps.event.addListener(citypark_marker, 'click', function() {
+          $('body').fadeOut(1000, function() {
+            window.location = "./housing.html?name=citypark";
+          });
+        });
+
+        var firstchoiceonexp_marker = new google.maps.Marker({
+          position: firstchoiceonexp,
+          map: map,
+          title: 'First Choice Apartments on Exposition',
+          icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|900'
+        });
+
+        google.maps.event.addListener(firstchoiceonexp_marker, 'click', function() {
+          $('body').fadeOut(1000, function() {
+            window.location = "./housing.html?name=firstchoiceonexp";
+          });;
+        });
+
+        var shrine_marker = new google.maps.Marker({
+          position: shrine,
+          map: map,
+          title: 'Shrine Apartments',
+          icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|900'
+        });
+
+        google.maps.event.addListener(shrine_marker, 'click', function() {
+          $('body').fadeOut(1000, function() {
+            window.location = "./housing.html?name=shrine";
+          });
+        });
+
+        var thirtycourt_marker = new google.maps.Marker({
+          position: thirtycourt,
+          map: map,
+          title: "30th Street Court Apartments",
+          icon: 'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|900'
+        });
+
+        google.maps.event.addListener(thirtycourt_marker, 'click', function() {
+          $('body').fadeOut(1000, function() {
+            window.location = "./housing.html?name=thirtycourt";
+          });
+        });
+
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap">
+    </script>
+  </body>
+</html>
